@@ -1,0 +1,38 @@
+{
+  "name": "locusts",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite-ssg build",
+    "preview": "vite preview",
+    "upload": "bun scripts/image-uploader/server.ts",
+    "crop": "bun scripts/image-cropper/server.ts",
+    "process-images": "bun scripts/process-images.ts"
+  },
+  "dependencies": {
+    "vue": "^3.5.13",
+    "vue-router": "^4.5.0",
+    "@unhead/vue": "^2.0.0",
+    "fuse.js": "^7.0.0",
+    "blurhash": "^2.0.5",
+    "tippy.js": "^6.3.7"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.0",
+    "chrono-node": "^2.7.0",
+    "gray-matter": "^4.0.3",
+    "less": "^4.2.0",
+    "markdown-it-anchor": "^9.2.0",
+    "markdown-it-attrs": "^4.2.0",
+    "markdown-it-footnote": "^4.0.0",
+    "sharp": "^0.33.0",
+    "typescript": "^5.7.0",
+    "unplugin-vue-components": "^28.0.0",
+    "unplugin-vue-markdown": "^0.26.0",
+    "vite": "^6.0.0",
+    "vite-ssg": "^0.23.0",
+    "woff2-encoder": "^2.0.0"
+  }
+}

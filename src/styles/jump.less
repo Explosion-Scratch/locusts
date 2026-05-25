@@ -1,0 +1,22 @@
+.jump-motion {
+  transform: translateX(var(--start-x, 0px));
+  transform-origin: bottom center;
+}
+
+.jump-motion.jumping {
+  animation: jump var(--jump-duration) cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes jump {
+  0% {
+    transform: translateX(var(--start-x, 0px)) translateY(0);
+  }
+  50% {
+    transform: translateX(calc(var(--start-x, 0px) + var(--jump-forward) * 0.65))
+      translateY(calc(-1 * var(--jump-height)));
+    animation-timing-function: cubic-bezier(0.5, 0, 0.75, 0);
+  }
+  100% {
+    transform: translateX(calc(var(--start-x, 0px) + var(--jump-forward))) translateY(0);
+  }
+}

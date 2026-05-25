@@ -1,0 +1,39 @@
+@accent: #2d7d9a;
+@accent-light: rgba(45, 125, 154, 0.12);
+@accent-hover: #1e6680;
+@accent-faint: rgba(45, 125, 154, 0.06);
+
+@bg: #faf9f7;
+@bg-elevated: #fff;
+@bg-subtle: #f0ede9;
+
+@text: #1a1a1a;
+@text-secondary: #5a5a5a;
+@text-muted: #999;
+
+@border: #ddd9d3;
+@border-light: #e8e4df;
+
+@max-width: 780px;
+@max-width-wide: 830px;
+
+:root {
+  --article-max-width: 780px;
+
+  @media (max-width: 1440px) and (min-width: 1101px) {
+    --article-max-width: ~"calc(100vw - 440px)";
+  }
+
+  --article-secondary: spin(@accent, 140);
+}
+
+@font-serif: 'New Computer Modern', 'Computer Modern Serif', Georgia, 'Times New Roman', serif;
+@font-display: 'Fraunces', Georgia, serif;
+@font-toc: 'EB Garamond', serif;
+
+@radius-sm: 2px;
+@radius: 3px;
+
+@transition-fast: 150ms ease;
+@transition: 250ms ease;
+@transition-slow: 400ms ease;

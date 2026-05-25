@@ -1,0 +1,144 @@
+.article-wrapper {
+  max-width: var(--article-max-width);
+  margin: 0 auto;
+  padding: 0 1.5em;
+  position: relative;
+}
+
+.article-body {
+  > p:first-of-type::first-letter {
+    font-size: 3.2em;
+    float: left;
+    line-height: 0.8;
+    margin: 0.05em 0.12em 0 0;
+    font-weight: 700;
+    color: @accent;
+  }
+}
+
+.article-body {
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    border-radius: @radius-sm;
+  }
+
+  ul, ol {
+    padding-left: 1.6em;
+    margin-bottom: 1.4em;
+    line-height: 1.4;
+
+    li {
+      margin-bottom: 0.25em;
+    }
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 2em 0;
+    font-size: font-size(0.9);
+
+    th, td {
+      padding: 0.7em 1em;
+      text-align: left;
+      border-bottom: 1px solid @border;
+    }
+
+    th {
+      font-weight: 700;
+      border-bottom-width: 2px;
+    }
+
+    tr:hover td {
+      background: @bg-subtle;
+    }
+  }
+}
+
+.footnotes {
+  margin-top: 4em;
+  padding-top: 2em;
+  border-top: 1px solid @border;
+  font-size: font-size(0.74);
+  line-height: 1.35;
+  color: @text-secondary;
+
+  ol {
+    padding-left: 1.4em;
+  }
+
+  li {
+    margin-bottom: 0.2em;
+  }
+
+  .footnote-backref {
+    color: @accent;
+    text-decoration: none;
+    margin-left: 0.3em;
+  }
+}
+
+@media print {
+  @page {
+    margin: 0.5in 0;
+  }
+
+  @page :first {
+    margin: 0.5in 0;
+    margin-top: 0 !important;
+  }
+
+  body {
+    background: transparent !important;
+    color: #000 !important;
+    font-size: 11pt !important;
+    margin-top: 0.8in !important;
+    margin-bottom: 0.8in !important;
+  }
+
+  .article-wrapper {
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0.6in 1.8in 0 !important;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+  }
+
+  .article-footer {
+    display: none !important;
+  }
+
+  blockquote, table, tr, pre, img, figure, .lazy-image {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 8.5pt;
+    color: #555;
+    font-weight: normal;
+  }
+
+  h2, h3, h4, h5, h6 {
+    break-after: avoid;
+    page-break-after: avoid;
+  }
+
+  .article-content h1,
+  .article-content h2,
+  .article-content h3,
+  .article-content h4,
+  .article-content h5,
+  .article-content h6 {
+    margin-bottom: 0.25em !important;
+    padding-bottom: 0 !important;
+  }
+
+  .article-content h2:not(:first-of-type) {
+    break-before: page;
+    page-break-before: always;
+  }
+}

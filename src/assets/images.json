@@ -1,0 +1,209 @@
+{
+  "lotus": {
+    "slug": "lotus",
+    "src": "/assets/images/lotus.png",
+    "blurhash": "U7K^dC=f00Jo?]_3DiIU00kp:gDiU{9FSuNF",
+    "width": 500,
+    "height": 500,
+    "alt": "A Lotus Flower",
+    "caption": "A Lotus Flower"
+  },
+  "flowers2": {
+    "slug": "flowers2",
+    "src": "/assets/images/flowers2.png",
+    "blurhash": "UIH0|q~B78VXrMil:r;xS[-T^7z_-VxaR*bE",
+    "width": 1024,
+    "height": 512,
+    "alt": "Historic botanical illustration of flowers",
+    "caption": "Historic botanical illustration of flowers"
+  },
+  "rml-transparent": {
+    "slug": "rml-transparent",
+    "src": "/assets/images/rml-transparent.png",
+    "blurhash": "U4BM0j:l~U4rScEM~8D+0iI:tk9^E3%LENS#",
+    "width": 2160,
+    "height": 986,
+    "alt": "Rocky Mountain Locust - Annual report of the Agricultural Experiment Station of the University of Minnesota. (11th July 1902-June 1903)",
+    "caption": "Rocky Mountain Locust - Annual report of the Agricultural Experiment Station of the University of Minnesota. (11th July 1902-June 1903)"
+  },
+  "stopped-trains-locusts": {
+    "slug": "stopped-trains-locusts",
+    "src": "/assets/images/stopped-trains-locusts.jpg",
+    "blurhash": "UXD]o3_2t7t6~q%Lofj[%MWBt7ayxuRjWBRj",
+    "width": 380,
+    "height": 224,
+    "alt": "Historic illustration of a train stopped by grasshoppers on the rails",
+    "caption": "Historic illustration of a train stopped by grasshoppers on the rails"
+  },
+  "rutherford-hayes": {
+    "slug": "rutherford-hayes",
+    "src": "/assets/images/rutherford-hayes.jpg",
+    "blurhash": "UHDvfy~qWB%M~q-;RjxuIUM{Rjj[RjWBt7ay",
+    "width": 3031,
+    "height": 3688,
+    "alt": "Portrait of President Rutherford B. Hayes",
+    "caption": "Portrait of President Rutherford B. Hayes"
+  },
+  "locust-book-cover": {
+    "slug": "locust-book-cover",
+    "src": "/assets/images/locust-book-cover.jpg",
+    "blurhash": "UYKcL7xY}==_-.Rkoes.}=NHI;ays,n%RkWC",
+    "width": 647,
+    "height": 1000,
+    "alt": "Book cover for Jeffrey Lockwood's Locust",
+    "caption": "Book cover for Jeffrey Lockwood's Locust"
+  },
+  "moulting-locust-palestine-1915": {
+    "slug": "moulting-locust-palestine-1915",
+    "src": "/assets/images/moulting-locust-palestine-1915.jpg",
+    "blurhash": "UVP%Fb?a~qV@NFofxboyxuf7IUxuxuofbFRj",
+    "width": 623,
+    "height": 900,
+    "alt": "Moulting locust from a swarm in Palestine in 1915",
+    "caption": "Moulting locust from a swarm in Palestine in 1915"
+  },
+  "chicken-fricassee": {
+    "slug": "chicken-fricassee",
+    "src": "/assets/images/chicken-fricassee.jpg",
+    "blurhash": "U8HTgQp9K-Tu%#GFk;%L1MXmxUxY-o9touVr",
+    "width": 2400,
+    "height": 1602,
+    "alt": "Chicken fricassee",
+    "caption": "Chicken fricassee"
+  },
+  "robert-furnas": {
+    "slug": "robert-furnas",
+    "src": "/assets/images/robert-furnas.jpg",
+    "blurhash": "UCF68|%M00~qM{of?bofD%D%00M{D%%M?bIU",
+    "width": 155,
+    "height": 191,
+    "alt": "Portrait of Nebraska Governor Robert W. Furnas",
+    "caption": "Portrait of Nebraska Governor Robert W. Furnas"
+  },
+  "grasshopper-devastated-field": {
+    "slug": "grasshopper-devastated-field",
+    "src": "/assets/images/grasshopper-devastated-field.jpg",
+    "blurhash": "U+IE|gt7WBj[~qoffQj[-;j[fQfQj[ayayay",
+    "width": 700,
+    "height": 391,
+    "alt": "Field damaged by a grasshopper plague",
+    "caption": "Field damaged by a grasshopper plague"
+  },
+  "rileys-locust-map": {
+    "slug": "rileys-locust-map",
+    "src": "/assets/images/rileys-locust-map.jpg",
+    "blurhash": "UHQ9.lxa%$.T~pjER+x]x[oyR6i{~qWVWCWC",
+    "width": 1300,
+    "height": 811,
+    "alt": "Riley's map of the 1877 locust plague in the United States",
+    "caption": "Riley's map of the 1877 locust plague in the United States"
+  },
+  "biblical-plague-locusts": {
+    "slug": "biblical-plague-locusts",
+    "src": "/assets/images/biblical-plague-locusts.png",
+    "blurhash": "UNGu,m-;M{ay?bxuWBM{00oft7Rj~q%MRjj[",
+    "width": 617,
+    "height": 845,
+    "alt": "Illustration of a biblical locust plague",
+    "caption": "Illustration of a biblical locust plague"
+  },
+  "thomas-osborne": {
+    "slug": "thomas-osborne",
+    "src": "/assets/images/thomas-osborne.jpg",
+    "blurhash": "UqP?syt6-:%Ls:ayofoe~pt6M{j[%Lofj[fQ",
+    "width": 1359,
+    "height": 1909,
+    "alt": "Portrait of Kansas Governor Thomas A. Osborne",
+    "caption": "Portrait of Kansas Governor Thomas A. Osborne"
+  },
+  "rocky-mountain-locust-specimen": {
+    "slug": "rocky-mountain-locust-specimen",
+    "src": "/assets/images/rocky-mountain-locust-specimen.jpg",
+    "blurhash": "UvQJT9oJ%Mxut7V@oeof_4ogIUof_3t7WBj@",
+    "width": 600,
+    "height": 280,
+    "alt": "Illustration of the Rocky Mountain locust, Melanoplus spretus",
+    "caption": "Illustration of the Rocky Mountain locust, Melanoplus spretus"
+  },
+  "australian-plague-locust-life-cycle": {
+    "slug": "australian-plague-locust-life-cycle",
+    "src": "/assets/images/australian-plague-locust-life-cycle.jpg",
+    "blurhash": "UFRC[6_3_3RjxuxuxuM{?bM{of%M~qj[ayay",
+    "width": 2406,
+    "height": 1646,
+    "alt": "Australian plague locust life cycle diagram",
+    "caption": "Australian plague locust life cycle diagram"
+  },
+  "nebraska_public_media_locusts": {
+    "slug": "nebraska_public_media_locusts",
+    "src": "/assets/images/nebraska_public_media_locusts.jpg",
+    "blurhash": "U$H.Qbj[fQj[~qofofj[-;ayj[ayofj[fQay",
+    "width": 720,
+    "height": 378,
+    "alt": "",
+    "caption": ""
+  },
+  "FarmersLocusts": {
+    "slug": "FarmersLocusts",
+    "src": "/assets/images/FarmersLocusts.jpg",
+    "blurhash": "UaL#2+xu?bt7-;ofRjj[~qofWBayxuRjayWB",
+    "width": 600,
+    "height": 542,
+    "alt": "",
+    "caption": ""
+  },
+  "cabinet_magazine_locusts": {
+    "slug": "cabinet_magazine_locusts",
+    "src": "/assets/images/cabinet_magazine_locusts.jpg",
+    "blurhash": "U7IE|hIUD$?b01~q_3xu00~q-;t7-;of9FWB",
+    "width": 1200,
+    "height": 1838,
+    "alt": "",
+    "caption": ""
+  },
+  "GreatPlainsLocusts": {
+    "slug": "GreatPlainsLocusts",
+    "src": "/assets/images/GreatPlainsLocusts.jpg",
+    "blurhash": "UXGIo.Rj%Mxu~qM{t7t7-;Rjofof-;ayj[of",
+    "width": 700,
+    "height": 254,
+    "alt": "",
+    "caption": ""
+  },
+  "Grasshopperdevastatedfield": {
+    "slug": "Grasshopperdevastatedfield",
+    "src": "/assets/images/Grasshopperdevastatedfield.jpg",
+    "blurhash": "U+IE|gt7WBj[~qoffQj[-;j[fQfQj[ayayay",
+    "width": 700,
+    "height": 391,
+    "alt": "",
+    "caption": ""
+  },
+  "GrasshopperHarvesterFinneyCoKS": {
+    "slug": "GrasshopperHarvesterFinneyCoKS",
+    "src": "/assets/images/GrasshopperHarvesterFinneyCoKS.jpg",
+    "blurhash": "U%L}BEt7M{WB~qWBayay-;oft7oft7ofoft7",
+    "width": 700,
+    "height": 483,
+    "alt": "",
+    "caption": ""
+  },
+  "Grangers_vs_Hoppers": {
+    "slug": "Grangers_vs_Hoppers",
+    "src": "/assets/images/Grangers_vs_Hoppers.jpg",
+    "blurhash": "UAL4Zp8_D+-o?GMyRkt64o%Mx[xu~Vt6j[ae",
+    "width": 1000,
+    "height": 588,
+    "alt": "",
+    "caption": ""
+  },
+  "dust-bowl-locusts": {
+    "slug": "dust-bowl-locusts",
+    "src": "/assets/images/dust-bowl-locusts.png",
+    "blurhash": "UCB3.^?b~q%Mayt7%Mj[xuRjofRj-;j[ofay",
+    "width": 4884,
+    "height": 3712,
+    "alt": "Drifts of grasshoppers choke the entrance of a downtown Colorado Springs shop during the Dust Bowl",
+    "caption": "Drifts of grasshoppers choke the entrance of a downtown Colorado Springs shop during the Dust Bowl"
+  }
+}
