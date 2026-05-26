@@ -25,6 +25,23 @@
     <slot />
   </span>
 
+  <figure
+    v-if="!hasLoadError && printSrc"
+    ref="printFigureEl"
+    class="bg-image-print"
+    :class="`bg-image-print--${printSide}`"
+  >
+    <img
+      :src="printSrc"
+      :alt="resolvedAlt"
+      class="bg-image-print__img"
+      :style="printImgStyle"
+    />
+    <figcaption v-if="resolvedAlt" class="bg-image-print__caption">
+      {{ resolvedAlt }}
+    </figcaption>
+  </figure>
+
   <Teleport to="body">
     <Transition name="lightbox-fade">
       <div v-if="showLightbox" class="lightbox-overlay" @click="closeLightbox">
@@ -38,7 +55,7 @@
               :height="placeholderH"
             />
             <img
-              :src="getUrl()"
+              :src="printSrc"
               :alt="resolvedAlt"
               :class="[
                 'lightbox-image',
@@ -86,6 +103,8 @@ const props = defineProps({
 });
 
 const triggerEl = ref(null);
+const printFigureEl = ref(null);
+const printSide = ref("left");
 const parsedWidth = computed(() => parseFloat(props.width) || 500);
 
 const showLightbox = ref(false);
@@ -111,8 +130,21 @@ const registryEntry = computed(() => {
 
 const blurhashData = computed(() => registryEntry.value?.blurhash || "");
 
-const resolvedAlt = computed(() => {
-  return registryEntry.value?.alt || "";
+const resolvedAlt = computed(() => registryEntry.value?.alt || props.asset || "");
+
+const printSrc = computed(() => {
+  if (props.url) return resolveAssetUrl(props.url);
+  if (props.asset && imagesData[props.asset]) {
+    return resolveAssetUrl(imagesData[props.asset].src);
+  }
+  return "";
+});
+
+const printImgStyle = computed(() => {
+  const w = registryEntry.value?.width;
+  const h = registryEntry.value?.height;
+  if (w && h) return { aspectRatio: `${w} / ${h}` };
+  return {};
 });
 
 const imageAspectRatio = computed(() => {
@@ -146,10 +178,9 @@ watch(showLightbox, (isOpen) => {
 });
 
 const hasLoadError = ref(false);
-const isImgLoaded = ref(false);
 
 function checkImageLoad() {
-  const url = getUrl();
+  const url = printSrc.value;
   if (!url) {
     hasLoadError.value = true;
     return;
@@ -158,18 +189,53 @@ function checkImageLoad() {
   img.src = url;
   img.onload = () => {
     hasLoadError.value = false;
+    nextTick(placePrintFigure);
   };
   img.onerror = () => {
     hasLoadError.value = true;
   };
 }
 
+function resolvePrintSide() {
+  const articleEl = document.querySelector(".article-content");
+  if (!articleEl) return "left";
+  const rect = articleEl.getBoundingClientRect();
+  const gap = 24;
+  const rightSpace = window.innerWidth - rect.right - gap;
+  const leftSpace = rect.left - gap;
+  return leftSpace >= rightSpace ? "left" : "right";
+}
+
+function placePrintFigure() {
+  if (!printFigureEl.value || !triggerEl.value) return;
+  const block = triggerEl.value.closest(
+    "p, ul, ol, blockquote, h1, h2, h3, h4, h5, h6",
+  );
+  if (block?.parentNode) {
+    block.parentNode.insertBefore(printFigureEl.value, block);
+  }
+}
+
+function schedulePrintPlacement() {
+  nextTick(() => {
+    requestAnimationFrame(() => {
+      printSide.value = resolvePrintSide();
+      placePrintFigure();
+    });
+  });
+}
+
 onMounted(() => {
+  printSide.value = resolvePrintSide();
   checkImageLoad();
+  schedulePrintPlacement();
+  window.addEventListener("beforeprint", schedulePrintPlacement);
+  window.addEventListener("locusts:beforeprint-layout", schedulePrintPlacement);
+  window.addEventListener("resize", schedulePrintPlacement);
 });
 
 watch(
-  () => getUrl(),
+  () => printSrc.value,
   () => {
     checkImageLoad();
   },
@@ -195,6 +261,7 @@ function closeLightbox() {
 
 let isHovering = false;
 let isActive = false;
+const isImgLoaded = ref(false);
 
 function ensureImage() {
   if (controller.imgEl) return controller.imgEl;
@@ -219,13 +286,7 @@ function ensureImage() {
 }
 
 function getUrl() {
-  let url = "";
-  if (props.url) {
-    url = props.url;
-  } else if (props.asset && imagesData[props.asset]) {
-    url = imagesData[props.asset].src;
-  }
-  return resolveAssetUrl(url);
+  return printSrc.value;
 }
 
 function getDistance(x, y, rect) {
@@ -253,7 +314,6 @@ function applyImageStyles() {
     deactivate(triggerEl.value);
   };
 
-  // Width and height will be set in updateDestination
   img.style.filter = props.filter;
   img.style.transform = "translateY(-50%) scale(1)";
 }
@@ -282,9 +342,9 @@ function onEnter(e) {
   isHovering = true;
   isActive = true;
   controller.activeOwner = triggerEl.value;
-  
+
   applyImageStyles();
-  
+
   updateDestination(e.clientY);
   controller.dest.y = e.clientY;
 
@@ -328,62 +388,51 @@ function updateDestination(mouseY) {
   const articleRect = articleEl?.getBoundingClientRect();
   const gap = 18;
   const preferredWidth = parsedWidth.value;
-  
-  let targetSide = 'right';
-  let availableWidth = 0;
-  
-  if (articleRect) {
-     const rightSpace = window.innerWidth - articleRect.right - gap * 2;
-     const leftSpace = articleRect.left - gap * 2;
-     
-     let hoverCardOnRight = false;
-     document.querySelectorAll('.hover-card').forEach(card => {
-       const rect = card.getBoundingClientRect();
-       if (rect.left > articleRect.right - 10 && rect.bottom > 0 && rect.top < window.innerHeight) {
-         hoverCardOnRight = true;
-       }
-     });
 
-     if (hoverCardOnRight) {
-         targetSide = 'left';
-         availableWidth = leftSpace;
-     } else if (rightSpace >= preferredWidth) {
-         targetSide = 'right';
-         availableWidth = rightSpace;
-     } else if (leftSpace >= preferredWidth) {
-         targetSide = 'left';
-         availableWidth = leftSpace;
-     } else if (rightSpace >= leftSpace) {
-         targetSide = 'right';
-         availableWidth = rightSpace;
-     } else {
-         targetSide = 'left';
-         availableWidth = leftSpace;
-     }
+  let targetSide = "right";
+  let availableWidth = 0;
+
+  if (articleRect) {
+    const rightSpace = window.innerWidth - articleRect.right - gap * 2;
+    const leftSpace = articleRect.left - gap * 2;
+
+    if (rightSpace >= preferredWidth) {
+      targetSide = "right";
+      availableWidth = rightSpace;
+    } else if (leftSpace >= preferredWidth) {
+      targetSide = "left";
+      availableWidth = leftSpace;
+    } else if (rightSpace >= leftSpace) {
+      targetSide = "right";
+      availableWidth = rightSpace;
+    } else {
+      targetSide = "left";
+      availableWidth = leftSpace;
+    }
   } else {
-     targetSide = 'right';
-     availableWidth = window.innerWidth - gap * 2;
+    targetSide = "right";
+    availableWidth = window.innerWidth - gap * 2;
   }
-  
+
   const finalWidth = Math.max(50, Math.min(preferredWidth, availableWidth));
   const finalHeight = finalWidth / imageAspectRatio.value;
-  
+
   let x = 0;
-  if (targetSide === 'right') {
-     x = articleRect ? articleRect.right + gap : window.innerWidth - finalWidth - gap;
+  if (targetSide === "right") {
+    x = articleRect ? articleRect.right + gap : window.innerWidth - finalWidth - gap;
   } else {
-     x = articleRect ? articleRect.left - finalWidth - gap : gap;
+    x = articleRect ? articleRect.left - finalWidth - gap : gap;
   }
-  
+
   controller.dest.x = Math.max(gap, Math.min(x, window.innerWidth - finalWidth - gap));
   controller.dest.y = Math.max(
     finalHeight / 2 + gap,
-    Math.min(mouseY, window.innerHeight - finalHeight / 2 - gap)
+    Math.min(mouseY, window.innerHeight - finalHeight / 2 - gap),
   );
 
   if (controller.imgEl && isActive) {
-      controller.imgEl.style.width = `${finalWidth}px`;
-      controller.imgEl.style.height = `${finalHeight}px`;
+    controller.imgEl.style.width = `${finalWidth}px`;
+    controller.imgEl.style.height = `${finalHeight}px`;
   }
 }
 
@@ -412,6 +461,9 @@ function loop() {
 onUnmounted(() => {
   if (controller.activeOwner === triggerEl.value) deactivate(triggerEl.value);
   document.body.style.overflow = "";
+  window.removeEventListener("beforeprint", schedulePrintPlacement);
+  window.removeEventListener("locusts:beforeprint-layout", schedulePrintPlacement);
+  window.removeEventListener("resize", schedulePrintPlacement);
 });
 </script>
 
@@ -444,6 +496,10 @@ onUnmounted(() => {
     padding-bottom: 0 !important;
     cursor: default;
   }
+}
+
+.bg-image-print {
+  display: none;
 }
 
 .lightbox-overlay {

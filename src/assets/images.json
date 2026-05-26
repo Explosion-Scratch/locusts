@@ -41,17 +41,17 @@
     "blurhash": "UHDvfy~qWB%M~q-;RjxuIUM{Rjj[RjWBt7ay",
     "width": 3031,
     "height": 3688,
-    "alt": "Portrait of President Rutherford B. Hayes",
-    "caption": "Portrait of President Rutherford B. Hayes"
+    "alt": "President Rutherford B. Hayes",
+    "caption": "President Rutherford B. Hayes"
   },
-  "locust-book-cover": {
-    "slug": "locust-book-cover",
+  "Metamorphosis": {
+    "slug": "Metamorphosis",
     "src": "/assets/images/locust-book-cover.jpg",
     "blurhash": "UYKcL7xY}==_-.Rkoes.}=NHI;ays,n%RkWC",
     "width": 647,
     "height": 1000,
-    "alt": "Book cover for Jeffrey Lockwood's Locust",
-    "caption": "Book cover for Jeffrey Lockwood's Locust"
+    "alt": "",
+    "caption": ""
   },
   "moulting-locust-palestine-1915": {
     "slug": "moulting-locust-palestine-1915",
@@ -59,8 +59,8 @@
     "blurhash": "UVP%Fb?a~qV@NFofxboyxuf7IUxuxuofbFRj",
     "width": 623,
     "height": 900,
-    "alt": "Moulting locust from a swarm in Palestine in 1915",
-    "caption": "Moulting locust from a swarm in Palestine in 1915"
+    "alt": "Moulting locust",
+    "caption": "Moulting locust"
   },
   "chicken-fricassee": {
     "slug": "chicken-fricassee",
@@ -77,8 +77,8 @@
     "blurhash": "UCF68|%M00~qM{of?bofD%D%00M{D%%M?bIU",
     "width": 155,
     "height": 191,
-    "alt": "Portrait of Nebraska Governor Robert W. Furnas",
-    "caption": "Portrait of Nebraska Governor Robert W. Furnas"
+    "alt": "Nebraska Governor Robert W. Furnas",
+    "caption": "Nebraska Governor Robert W. Furnas"
   },
   "grasshopper-devastated-field": {
     "slug": "grasshopper-devastated-field",
@@ -86,8 +86,8 @@
     "blurhash": "U+IE|gt7WBj[~qoffQj[-;j[fQfQj[ayayay",
     "width": 700,
     "height": 391,
-    "alt": "Field damaged by a grasshopper plague",
-    "caption": "Field damaged by a grasshopper plague"
+    "alt": "Only stalks left after a locust plague",
+    "caption": "Only stalks left after a locust plague"
   },
   "rileys-locust-map": {
     "slug": "rileys-locust-map",
@@ -95,8 +95,8 @@
     "blurhash": "UHQ9.lxa%$.T~pjER+x]x[oyR6i{~qWVWCWC",
     "width": 1300,
     "height": 811,
-    "alt": "Riley's map of the 1877 locust plague in the United States",
-    "caption": "Riley's map of the 1877 locust plague in the United States"
+    "alt": "Riley's map of the 1877 locust swarm",
+    "caption": "Riley's map of the 1877 locust swarm"
   },
   "biblical-plague-locusts": {
     "slug": "biblical-plague-locusts",
@@ -104,8 +104,8 @@
     "blurhash": "UNGu,m-;M{ay?bxuWBM{00oft7Rj~q%MRjj[",
     "width": 617,
     "height": 845,
-    "alt": "Illustration of a biblical locust plague",
-    "caption": "Illustration of a biblical locust plague"
+    "alt": "Photos from Albert's Swarm (1877)",
+    "caption": "Photos from Albert's Swarm (1877)"
   },
   "thomas-osborne": {
     "slug": "thomas-osborne",
@@ -113,8 +113,8 @@
     "blurhash": "UqP?syt6-:%Ls:ayofoe~pt6M{j[%Lofj[fQ",
     "width": 1359,
     "height": 1909,
-    "alt": "Portrait of Kansas Governor Thomas A. Osborne",
-    "caption": "Portrait of Kansas Governor Thomas A. Osborne"
+    "alt": "Kansas Governor Thomas A. Osborne",
+    "caption": "Kansas Governor Thomas A. Osborne"
   },
   "rocky-mountain-locust-specimen": {
     "slug": "rocky-mountain-locust-specimen",
@@ -131,8 +131,8 @@
     "blurhash": "UFRC[6_3_3RjxuxuxuM{?bM{of%M~qj[ayay",
     "width": 2406,
     "height": 1646,
-    "alt": "Australian plague locust life cycle diagram",
-    "caption": "Australian plague locust life cycle diagram"
+    "alt": "The life cycle of a locust",
+    "caption": "The life cycle of a locust"
   },
   "nebraska_public_media_locusts": {
     "slug": "nebraska_public_media_locusts",
@@ -140,8 +140,8 @@
     "blurhash": "U$H.Qbj[fQj[~qofofj[-;ayj[ayofj[fQay",
     "width": 720,
     "height": 378,
-    "alt": "",
-    "caption": ""
+    "alt": "A locust swarm on a field",
+    "caption": "A locust swarm on a field"
   },
   "FarmersLocusts": {
     "slug": "FarmersLocusts",
@@ -149,8 +149,8 @@
     "blurhash": "UaL#2+xu?bt7-;ofRjj[~qofWBayxuRjayWB",
     "width": 600,
     "height": 542,
-    "alt": "",
-    "caption": ""
+    "alt": "Farmers attempting to fight off the locusts",
+    "caption": "Farmers attempting to fight off the locusts"
   },
   "cabinet_magazine_locusts": {
     "slug": "cabinet_magazine_locusts",
@@ -158,8 +158,8 @@
     "blurhash": "U7IE|hIUD$?b01~q_3xu00~q-;t7-;of9FWB",
     "width": 1200,
     "height": 1838,
-    "alt": "",
-    "caption": ""
+    "alt": "An engraving showing the swarm's intensity",
+    "caption": "An engraving showing the swarm's intensity"
   },
   "GreatPlainsLocusts": {
     "slug": "GreatPlainsLocusts",
@@ -167,8 +167,8 @@
     "blurhash": "UXGIo.Rj%Mxu~qM{t7t7-;Rjofof-;ayj[of",
     "width": 700,
     "height": 254,
-    "alt": "",
-    "caption": ""
+    "alt": "A swarm of locusts fly through the air",
+    "caption": "A swarm of locusts fly through the air"
   },
   "Grasshopperdevastatedfield": {
     "slug": "Grasshopperdevastatedfield",
@@ -176,8 +176,8 @@
     "blurhash": "U+IE|gt7WBj[~qoffQj[-;j[fQfQj[ayayay",
     "width": 700,
     "height": 391,
-    "alt": "",
-    "caption": ""
+    "alt": "Only stalks are left after locusts devastate crops",
+    "caption": "Only stalks are left after locusts devastate crops"
   },
   "GrasshopperHarvesterFinneyCoKS": {
     "slug": "GrasshopperHarvesterFinneyCoKS",
@@ -185,8 +185,8 @@
     "blurhash": "U%L}BEt7M{WB~qWBayay-;oft7oft7ofoft7",
     "width": 700,
     "height": 483,
-    "alt": "",
-    "caption": ""
+    "alt": "A farmer uses a horse to pull a contraption to collect and kill locusts",
+    "caption": "A farmer uses a horse to pull a contraption to collect and kill locusts"
   },
   "Grangers_vs_Hoppers": {
     "slug": "Grangers_vs_Hoppers",
@@ -194,8 +194,8 @@
     "blurhash": "UAL4Zp8_D+-o?GMyRkt64o%Mx[xu~Vt6j[ae",
     "width": 1000,
     "height": 588,
-    "alt": "",
-    "caption": ""
+    "alt": "A cartoon representing the locust takeover",
+    "caption": "A cartoon representing the locust takeover"
   },
   "dust-bowl-locusts": {
     "slug": "dust-bowl-locusts",

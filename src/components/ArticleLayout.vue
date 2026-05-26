@@ -29,6 +29,22 @@
       :icon_scale="frontmatter.icon_scale"
     />
     <div class="article-body-container">
+      <nav
+        v-if="printTocItems.length"
+        class="print-toc"
+        aria-label="Table of contents"
+      >
+        <h2 class="print-toc__title">Table of Contents</h2>
+        <ul class="print-toc__list">
+          <li
+            v-for="item in printTocItems"
+            :key="item.id"
+            :class="`print-toc__item print-toc__item--h${item.level}`"
+          >
+            <a class="print-toc__link" :href="`#${item.id}`">{{ item.text }}</a>
+          </li>
+        </ul>
+      </nav>
       <TableOfContents />
       <div class="article-content">
         <slot />
@@ -42,7 +58,12 @@
 </template>
 
 <script setup>
-import { provide, reactive, onMounted, computed } from "vue";
+import { provide, reactive, onMounted, onUnmounted, computed, ref, nextTick } from "vue";
+import { collectArticleHeadings } from "@/composables/useArticleHeadings";
+import {
+  flushImageLoadsNow,
+  scheduleImageLoadsAfterPaint,
+} from "@/utils/imageLoadScheduler";
 import { formatCitation, formatCitationPreview } from "@/sources";
 import { useHead } from "@unhead/vue";
 import { formatDate } from "@/utils/date";
@@ -71,6 +92,28 @@ const resolvedIcon = computed(() => resolveAssetUrl(props.frontmatter?.icon));
 
 const citations = reactive([]);
 let nextCitationIndex = 0;
+const headingSelector = "h2, h3, h4, h5";
+let contentEl = null;
+
+const printTocItems = ref([]);
+
+function buildPrintToc() {
+  printTocItems.value = collectArticleHeadings();
+}
+
+function onBeforePrint() {
+  flushImageLoadsNow();
+  buildPrintToc();
+  window.dispatchEvent(new Event("locusts:beforeprint-layout"));
+}
+
+function onHeadingClick(e) {
+  if (e.target instanceof Element && e.target.closest("a")) return;
+  const heading = e.target instanceof Element ? e.target.closest(headingSelector) : null;
+  if (!(heading instanceof HTMLElement) || !heading.id) return;
+  history.pushState(null, "", `#${heading.id}`);
+  heading.scrollIntoView({ behavior: "smooth" });
+}
 
 provide("citations", citations);
 provide("registerCitation", (citation) => {
@@ -114,18 +157,15 @@ useHead({
 });
 
 onMounted(() => {
-  const content = document.querySelector(".article-content");
-  if (content) {
-    const headings = content.querySelectorAll("h2, h3, h4, h5, h6");
-    headings.forEach((heading) => {
-      heading.addEventListener("click", (e) => {
-        if (e.target.tagName === "A") return;
-        if (heading.id) {
-          history.pushState(null, "", `#${heading.id}`);
-          heading.scrollIntoView({ behavior: "smooth" });
-        }
-      });
-    });
+  scheduleImageLoadsAfterPaint();
+  window.addEventListener("beforeprint", onBeforePrint);
+  nextTick(() => {
+    setTimeout(buildPrintToc, 100);
+  });
+
+  contentEl = document.querySelector(".article-content");
+  if (contentEl) {
+    contentEl.addEventListener("click", onHeadingClick);
   }
 
   const rawFootnotes = document.querySelector("section.footnotes");
@@ -151,6 +191,14 @@ onMounted(() => {
     });
   }
 });
+
+onUnmounted(() => {
+  window.removeEventListener("beforeprint", onBeforePrint);
+  if (contentEl) {
+    contentEl.removeEventListener("click", onHeadingClick);
+    contentEl = null;
+  }
+});
 </script>
 
 <style lang="less" scoped>
@@ -164,6 +212,76 @@ onMounted(() => {
 
 .article-body-container {
   position: relative;
+}
+
+.print-toc {
+  display: none;
+}
+
+@media print {
+  .print-toc {
+    display: block;
+    float: right;
+    width: 35%;
+    margin: 0 0 1.2em 1.2em;
+    break-inside: avoid;
+    page-break-inside: avoid;
+    position: relative;
+    z-index: 2;
+  }
+
+  .print-toc__title {
+    font-size: 11pt;
+    font-family: @font-display;
+    font-weight: 800;
+    margin: 0 0 0.4em;
+    padding-bottom: 0.2em;
+    border-bottom: 1px solid #222;
+    color: #000;
+  }
+
+  .print-toc__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .print-toc__link {
+    display: block;
+    color: #111;
+    text-decoration: none;
+    font-family: @font-toc;
+    line-height: 1.2;
+    padding: 0.05em 0;
+  }
+
+  .print-toc__item--h2 .print-toc__link {
+    font-size: 9.5pt;
+  }
+
+  .print-toc__item--h3 .print-toc__link {
+    font-size: 8.5pt;
+    font-style: italic;
+    padding-left: 0.6em;
+  }
+
+  .print-toc__item--h4 .print-toc__link {
+    font-size: 8pt;
+    font-style: italic;
+    padding-left: 1.1em;
+    color: #444;
+  }
+
+  .print-toc__item--h5 .print-toc__link {
+    font-size: 8pt;
+    font-style: italic;
+    padding-left: 1.6em;
+    color: #555;
+  }
+
+  :deep(.toc) {
+    display: none !important;
+  }
 }
 
 .article-content {
@@ -200,8 +318,8 @@ onMounted(() => {
     align-items: center;
     position: fixed;
     top: 0;
-    left: 1.8in;
-    right: 1.8in;
+    left: 1.3in;
+    right: 1.3in;
     height: 0.35in;
     border-bottom: 0.5px solid #ddd;
     font-size: 8.5pt;
@@ -272,11 +390,11 @@ onMounted(() => {
     display: block;
     position: absolute;
     top: -0.8in;
-    left: -1.8in;
-    right: -1.8in;
+    left: -1.3in;
+    right: -1.3in;
     height: 0.8in;
     background: #fff;
-    z-index: 10000;
+    z-index: 10001;
   }
 }
 </style>

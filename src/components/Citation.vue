@@ -152,4 +152,13 @@ onMounted(() => {
     background-size: 100% 1.5px;
   }
 }
+
+@media print {
+  .citation__link {
+    font-size: 6pt !important;
+    font-weight: 500;
+    color: #333 !important;
+    background: none !important;
+  }
+}
 </style>

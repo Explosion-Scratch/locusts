@@ -10,7 +10,6 @@
       <span class="toc__toggle-dot"></span>
     </button>
     <div class="toc__list-wrapper" :class="{ 'toc__list-wrapper--visible': hovered }">
-      <h2 class="toc__print-title">Table of Contents</h2>
       <div class="toc__scroll-content">
         <svg class="toc-marker" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
           <path
@@ -43,6 +42,7 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted, nextTick, watch } from 'vue';
+import { collectArticleHeadings } from '@/composables/useArticleHeadings';
 
 const tocItems = ref([]);
 const activeIds = ref([]);
@@ -53,25 +53,7 @@ let resizeObserver = null;
 const linkDistances = new WeakMap();
 
 function buildToc() {
-  const article = document.querySelector('.article-content');
-  if (!article) return;
-
-  const headings = article.querySelectorAll('h2, h3, h4');
-  tocItems.value = Array.from(headings).map((el) => {
-    if (!el.id) {
-      el.id = el.textContent
-        .toLowerCase()
-        .replace(/[^\w\s-]/g, '')
-        .replace(/\s+/g, '-')
-        .replace(/-+/g, '-')
-        .trim();
-    }
-    return {
-      id: el.id,
-      text: el.textContent.replace(/#$/, '').trim(),
-      level: parseInt(el.tagName[1]),
-    };
-  });
+  tocItems.value = collectArticleHeadings();
 }
 
 function setupObserver() {
@@ -297,27 +279,6 @@ onUnmounted(() => {
     opacity: 1;
   }
 
-  @media print {
-    position: static;
-    float: right;
-    width: 35%;
-    opacity: 1;
-    margin: 0 0 1.5em 1.5em !important;
-  }
-}
-
-.toc__print-title {
-  display: none;
-  @media print {
-    display: block;
-    font-size: 11pt;
-    font-family: @font-display;
-    font-weight: 800;
-    margin: 0 0 0.4em 0;
-    padding-bottom: 0.2em;
-    border-bottom: 1px solid #222;
-    color: #000;
-  }
 }
 
 .toc__toggle {
@@ -388,14 +349,6 @@ onUnmounted(() => {
     }
   }
 
-  @media print {
-    position: static;
-    max-height: none;
-    opacity: 1;
-    overflow: visible;
-    box-shadow: none;
-    border: none;
-  }
 }
 
 .toc__scroll-content {
@@ -415,9 +368,6 @@ onUnmounted(() => {
     display: none;
   }
 
-  @media print {
-    display: none;
-  }
 }
 
 .toc-marker__path {
@@ -448,6 +398,10 @@ onUnmounted(() => {
 
   &--h4 {
     padding-left: 1.6em;
+  }
+
+  &--h5 {
+    padding-left: 2.4em;
   }
 
   @media print {
@@ -492,6 +446,11 @@ onUnmounted(() => {
     font-style: italic;
   }
 
+  .toc__item--h5 & {
+    font-weight: 400;
+    font-style: italic;
+  }
+
   @media (max-width: 1100px) {
     font-size: font-size(0.85);
     padding: 6px 8px;
@@ -503,40 +462,6 @@ onUnmounted(() => {
 
     .toc__item--active & {
       background: @accent-faint;
-    }
-  }
-
-  @media print {
-    color: #111 !important;
-    line-height: 1.15 !important;
-    padding: 0.03em 0 !important;
-    font-family: @font-toc !important;
-
-    .toc__item--h2 & {
-      font-size: 9.5pt !important;
-      font-weight: 400 !important;
-      font-style: normal !important;
-      color: #000 !important;
-      margin-top: 0.25em !important;
-    }
-
-    .toc__item--h3 & {
-      font-size: 8.5pt !important;
-      font-weight: 400 !important;
-      font-style: italic !important;
-      color: #222 !important;
-    }
-
-    .toc__item--h4 & {
-      font-size: 8pt !important;
-      font-weight: 400 !important;
-      font-style: italic !important;
-      color: #555 !important;
-    }
-
-    .toc__item--active & {
-      color: inherit !important;
-      background: transparent !important;
     }
   }
 }

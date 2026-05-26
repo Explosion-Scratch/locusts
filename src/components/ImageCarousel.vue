@@ -1,5 +1,11 @@
 <template>
-  <div class="carousel" role="region" aria-label="Image carousel">
+  <div
+    class="carousel"
+    :class="{ 'carousel--single': images.length === 1 }"
+    role="region"
+    aria-label="Image carousel"
+  >
+    <div class="carousel__screen">
     <div class="carousel__inner">
       <div
         class="carousel__viewport"
@@ -54,11 +60,30 @@
     </div>
 
     <p v-if="currentCaption" class="carousel__caption">{{ currentCaption }}</p>
+    </div>
+
+    <div
+      class="carousel__print-grid"
+      aria-hidden="true"
+      :style="{ '--grid-cols': gridColumns }"
+    >
+      <div
+        v-for="img in printGridImages"
+        :key="'print-' + img.src"
+        class="carousel__print-item"
+      >
+        <LazyImage :src="img.src" :alt="img.caption" />
+      </div>
+    </div>
   </div>
 </template>
 
 <script setup>
 import { ref, computed } from 'vue';
+import {
+  gridColumnCount,
+  layoutImagesForGrid,
+} from '@/utils/imageGridLayout';
 
 const props = defineProps({
   images: {
@@ -73,6 +98,8 @@ const props = defineProps({
 
 const currentIndex = ref(0);
 const viewportEl = ref(null);
+const printGridImages = computed(() => layoutImagesForGrid(props.images));
+const gridColumns = computed(() => gridColumnCount(props.images.length));
 
 const currentCaption = computed(() => props.images[currentIndex.value]?.caption || '');
 
@@ -238,5 +265,52 @@ function onTouchEnd(e) {
   color: @text-secondary;
   font-style: italic;
   margin-top: 0.5em;
+}
+
+.carousel__print-grid {
+  display: none;
+}
+
+@media print {
+  .carousel {
+    max-width: none;
+    margin: 1.2em 0;
+  }
+
+  .carousel__screen {
+    display: none !important;
+  }
+
+  .carousel__print-grid {
+    display: grid;
+    grid-template-columns: repeat(var(--grid-cols, 2), minmax(0, 1fr));
+    gap: 1em 1.2em;
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .carousel--single .carousel__print-grid {
+    max-width: 4.5in;
+    margin: 0 auto;
+  }
+
+  .carousel__print-item {
+    :deep(.lazy-image) {
+      margin: 0;
+    }
+
+    :deep(.lazy-image__container) {
+      box-shadow: none;
+    }
+
+    :deep(.lazy-image__img) {
+      opacity: 1;
+    }
+
+    :deep(.lazy-image__caption) {
+      font-size: 8.5pt;
+      padding: 0.35em 0 0;
+    }
+  }
 }
 </style>

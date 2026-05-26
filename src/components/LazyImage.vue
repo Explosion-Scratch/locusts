@@ -14,7 +14,8 @@
         :alt="resolvedAlt"
         :class="['lazy-image__img', { 'lazy-image__img--loaded': loaded }]"
         @load="onLoad"
-        loading="lazy"
+        loading="eager"
+        decoding="async"
       />
     </div>
     <figcaption v-if="resolvedAlt && !hideCaption" class="lazy-image__caption">
@@ -24,10 +25,11 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, watch, nextTick } from 'vue';
+import { ref, computed, onMounted, onUnmounted, watch, nextTick } from 'vue';
 import { decode } from 'blurhash';
 import imageRegistry from '@/assets/images.json';
 import { resolveAssetUrl } from '@/utils/path';
+import { onImageLoadsAfterPaint } from '@/utils/imageLoadScheduler';
 
 const props = defineProps({
   src: { type: String, required: true },
@@ -36,6 +38,7 @@ const props = defineProps({
   height: { type: Number, default: 0 },
   blurhash: { type: String, default: '' },
   hideCaption: { type: Boolean, default: false },
+  immediate: { type: Boolean, default: false },
 });
 
 const resolvedSrc = computed(() => resolveAssetUrl(props.src));
@@ -43,7 +46,6 @@ const resolvedSrc = computed(() => resolveAssetUrl(props.src));
 const canvasEl = ref(null);
 const loaded = ref(false);
 const shouldLoad = ref(false);
-const rootEl = ref(null);
 
 const placeholderW = 32;
 const placeholderH = 32;
@@ -93,26 +95,34 @@ function onLoad() {
   loaded.value = true;
 }
 
+function enableLoad() {
+  shouldLoad.value = true;
+}
+
+let stopPaintLoad = null;
+
 onMounted(() => {
   nextTick(() => renderBlurhash());
 
-  if ('IntersectionObserver' in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries[0].isIntersecting) {
-          shouldLoad.value = true;
-          observer.disconnect();
-        }
-      },
-      { rootMargin: '200px' }
-    );
-
-    const el = canvasEl.value?.parentElement;
-    if (el) observer.observe(el);
-  } else {
-    shouldLoad.value = true;
+  if (props.immediate) {
+    enableLoad();
+    return;
   }
+
+  // Intended behavior: continue queuing deferred image loads after first paint.
+  stopPaintLoad = onImageLoadsAfterPaint(enableLoad);
 });
+
+onUnmounted(() => {
+  stopPaintLoad?.();
+});
+
+watch(
+  () => props.immediate,
+  (immediate) => {
+    if (immediate) enableLoad();
+  }
+);
 
 watch(() => blurhashData.value, () => {
   nextTick(() => renderBlurhash());
@@ -169,6 +179,10 @@ watch(() => blurhashData.value, () => {
   .lazy-image {
     break-inside: avoid;
     page-break-inside: avoid;
+  }
+
+  .lazy-image__img {
+    opacity: 1;
   }
 }
 </style>

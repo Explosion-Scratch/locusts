@@ -6,7 +6,7 @@ author: "Thomas Stafford"
 icon: "/assets/images/rml-transparent.png"
 icon_scale: 1.9
 # secondary: "#bd9508"
-secondary: "#8aad1f"
+secondary: "#637E10"
 ---
 
 <script setup>
@@ -23,18 +23,18 @@ Racing through the skies and landing upon crops, people and animals, were Rocky 
 
 ![Charles Valentine Riley's 1877 map of the locust plague, showing the permanent, sub-permanent, and occasional breeding regions mapped by the United States Entomological Commission.](/assets/images/rileys-locust-map.jpg)
 
-The species that plagued these settlers—the <BackgroundImage asset="rocky-mountain-locust-specimen">Rocky Mountain Locust</BackgroundImage>—(_Melanoplus spretus_) is now gone. The last specimen was collected in 1902, only 40 years after the estimate of 12.5 trillion. Because they were so numerous, very few specimens were ever collected or extensively studied, driving modern <BackgroundImage asset="locust-book-cover">insect-historians</BackgroundImage> to collect samples from glaciers that had engulfed them centuries ago<Citation source="hcn_super_hopper" />. <Hover content="The locusts were also relatively unknown to the Native Americans. Though small swarms had been encountered before, nothing of this size had ever come about. Such swarms were only spoken of as a mythological threat in distant oral traditions. Some tribes believed that the insects were a curse brought by the white invaders.">Not only did they vanish without a trace, but they also appeared without warning, only initially described in [1800](in Manitoba Canada &quot;Locusts were reported in Manitoba, Canada, during 1800 and 1808&quot;—Rocky Mountain Locust in Texas)</Hover><Citation source="casto" quote-index="0" />. To tell the story of the Rocky Mountain Locust is to tell of one of the most numerous animals in history, the desperate pioneers who tried everything to stave off a biblical plague, and of a remarkable unification of research, legislation, and community.
+The species that plagued these settlers—the <BackgroundImage asset="rocky-mountain-locust-specimen">Rocky Mountain Locust</BackgroundImage>—(_Melanoplus spretus_) is now gone. The last specimen was collected in 1902, only 40 years after the estimate of 12.5 trillion. Because they were so numerous, very few specimens were ever collected or extensively studied, driving modern <BackgroundImage asset="Metamorphosis">insect-historians</BackgroundImage> to collect samples from glaciers that had engulfed them centuries ago<Citation source="hcn_super_hopper" />. <Hover content="The locusts were also relatively unknown to the Native Americans. Though small swarms had been encountered before, nothing of this size had ever come about. Such swarms were only spoken of as a mythological threat in distant oral traditions. Some tribes believed that the insects were a curse brought by the white invaders.">Not only did they vanish without a trace, but they also appeared without warning, only initially described in [1800](in Manitoba Canada &quot;Locusts were reported in Manitoba, Canada, during 1800 and 1808&quot;—Rocky Mountain Locust in Texas)</Hover><Citation source="casto" quote-index="0" />. To tell the story of the Rocky Mountain Locust is to tell of one of the most numerous animals in history, the desperate pioneers who tried everything to stave off a biblical plague, and of a remarkable unification of research, legislation, and community.
 
 _What follows is my best attempt to tell the story of the rise and fall of the most successful American pioneer—the Rocky Mountain Locust._
 
 ---
 
-- ![A dense swarm of locusts flying over a landscape with mountains and palm trees in the background.](/assets/images/GreatPlainsLocusts.jpg)
-- ![A massive swarm of locusts descending upon and devastating a corn field.](/assets/images/nebraska_public_media_locusts.jpg)
-- ![An engraving illustrating farmers attempting to fight off a massive locust swarm using fire and trenches.](/assets/images/cabinet_magazine_locusts.jpg)
-- ![A historical cartoon titled 'Grangers Versus Hoppers' depicting farmers battling giant grasshoppers.](/assets/images/Grangers_vs_Hoppers.jpg)
+- ![Locusts swarming through the air (probably far less dense than Albert's swarm)](/assets/images/GreatPlainsLocusts.jpg)
+- ![A huge swarm of locusts devastate a corn field.](/assets/images/nebraska_public_media_locusts.jpg)
+- ![Farmers attempting to fight off a massive locust swarm using fire and trenches.](/assets/images/cabinet_magazine_locusts.jpg)
+- !['Grangers Versus Hoppers'- farmers battling giant grasshoppers.](/assets/images/Grangers_vs_Hoppers.jpg)
 - ![A field devastated by grasshoppers.](/assets/images/Grasshopperdevastatedfield.jpg)
-- ![Farmers fighting the Rocky Mountain Locust.](/assets/images/FarmersLocusts.jpg)
+- ![Farmers fighting the Rocky Mountain Locust (engraving).](/assets/images/FarmersLocusts.jpg)
 - ![Sweeping a field crop for grasshoppers on a Finney County, Kansas farm. Metal teeth went through the crop, making the grasshoppers jump up, hit the back wall, and drop into a container by Henry L. Wolf about 1895.](/assets/images/GrasshopperHarvesterFinneyCoKS.jpg)
 
 ---

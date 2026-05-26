@@ -120,4 +120,74 @@ function scrollBack(index) {
     line-height: 1.35;
   }
 }
+
+@media print {
+  .citation-list {
+    margin-top: 1.25em !important;
+    padding-top: 0.25em !important;
+    border-top-color: #ccc !important;
+  }
+
+  .citation-list__title {
+    font-size: 7pt !important;
+    margin-bottom: 0.3em !important;
+    color: #333 !important;
+  }
+
+  .citation-list__items {
+    padding-left: 0.9em !important;
+    font-size: 6pt !important;
+    line-height: 1.15 !important;
+    color: #333 !important;
+    column-count: 2;
+    column-gap: 1.1em;
+  }
+
+  .citation-list__item {
+    margin-bottom: 0.1em !important;
+    padding: 0 !important;
+    break-inside: avoid;
+    page-break-inside: avoid;
+
+    &:target,
+    &--highlight {
+      background: none !important;
+      padding-left: 0 !important;
+      margin-left: 0 !important;
+    }
+  }
+
+  .citation-list__backref {
+    display: none !important;
+  }
+
+  .citation-list__content {
+    :deep(.citation-source-link) {
+      color: #333 !important;
+      background: none !important;
+      font-weight: 500;
+
+      &::after {
+        content: none !important;
+      }
+    }
+
+    :deep(a[href^="http"]::after) {
+      content: none !important;
+    }
+
+    :deep(.citation-list__quote) {
+      display: inline;
+      margin: 0 !important;
+      padding: 0 !important;
+      border: none !important;
+      font-size: 1em;
+      line-height: inherit;
+
+      &::before {
+        content: " ";
+      }
+    }
+  }
+}
 </style>
